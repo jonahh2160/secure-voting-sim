@@ -67,6 +67,24 @@ You should see a printed election tally similar to:
 Election Results: {'Candidate A': 1, 'Candidate B': 1}
 ```
 
+Run Demo (headless)
+
+If you want a quick, GUI-free check that the core cryptographic flow works, use the provided demo script:
+
+```powershell
+python .\run_demo.py
+```
+
+Expected sample output:
+
+```
+Demo tally: {'Candidate A': 2, 'Candidate B': 1}
+Stored encrypted votes: 3
+Decrypted first vote: {"voter": "Alice", "vote": "Candidate A"}
+```
+
+This demo exercises `Voter` and `ElectionAuthority` without importing `customtkinter` and is suitable for CI or smoke-testing.
+
 Notes and troubleshooting
 - Ensure `python` points to a Python 3.x interpreter. If not, use `python3` or the full path to the executable.
 - `customtkinter` requires a working Tkinter installation (usually included with the standard Windows Python installer).
