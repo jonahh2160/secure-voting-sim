@@ -6,13 +6,22 @@ from gui import UserGui
 from Voter import Voter
 
 
-def submit_user_vote(vote_choice, authority, thread):
+def submit_user_vote(vote_choice, authority, thread, gui):
     voter = Voter("User")
     authority.cast_vote(voter, vote_choice)
 
     thread.join()
 
     results = authority.tally_votes()
+    winner = max(results)
+    winner_votes = max(results.values())
+    loser = min(results)
+    loser_votes = min(results.values())
+
+    gui.message_label.configure(
+        text=f"Tallying complete!\n\nWinner: {winner} with {winner_votes} votes\nLoser: {loser} with {loser_votes} votes"
+    )
+
     print("Demo tally:", results)
     print("Stored encrypted votes:", len(authority.votes))
 
@@ -48,7 +57,7 @@ def main():
     )
     thread.start()
 
-    gui = UserGui(on_submit=lambda vote: submit_user_vote(vote, authority, thread))
+    gui = UserGui(on_submit=lambda vote: submit_user_vote(vote, authority, thread, gui))
     gui.root.mainloop()
 
 

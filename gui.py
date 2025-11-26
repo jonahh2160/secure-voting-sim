@@ -34,16 +34,15 @@ class UserGui:
         )
         self.submit_button.pack(pady=10)
 
-        self.loading_label = ctk.CTkLabel(self.root, text="")
-        self.loading_label.pack(pady=10)
+        self.message_label = ctk.CTkLabel(self.root, text="")
+        self.message_label.pack(pady=10)
 
     def handle_vote(self):
         self.radio_A.configure(state="disabled")
         self.radio_B.configure(state="disabled")
         self.submit_button.configure(state="disabled")
-        self.loading_label.configure(text="Tallying votes...")
+        self.message_label.configure(text="Tallying votes...")
         self.root.update_idletasks()
 
         vote = self.radio_var.get()
         self.submit_callback(vote)
-        self.loading_label.configure(text="Tallying complete!")
