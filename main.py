@@ -1,14 +1,27 @@
-from Voter import Voter
+import random
+
 from ElectionAuthority import ElectionAuthority
+from Voter import Voter
+
 
 def main():
     authority = ElectionAuthority()
 
-    voters = [Voter("Alice"), Voter("Bob"), Voter("Carol")]
-    choices = ["Candidate A", "Candidate B", "Candidate A"]
+    voters = [
+        Voter("Alice"),
+        Voter("Bob"),
+        Voter("Carol"),
+        Voter("Daisy"),
+        Voter("Ezra"),
+        Voter("Finley"),
+        Voter("Gavin"),
+        Voter("Hannah"),
+        Voter("Ivan"),
+        Voter("Julia"),
+    ]
 
-    for v, c in zip(voters, choices):
-        authority.cast_vote(v, c)
+    for v in voters:
+        authority.cast_vote(v, random.choice(["Candidate A", "Candidate B"]))
 
     results = authority.tally_votes()
     print("Demo tally:", results)
